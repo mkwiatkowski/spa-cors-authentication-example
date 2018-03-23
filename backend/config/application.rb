@@ -27,8 +27,8 @@ module Backend
     # Configure CORS for all routes.
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        origins 'localhost:9292' # address of the frontend app
+        resource '*', headers: :any, methods: [:get, :post, :options], credentials: true
       end
     end
   end

@@ -7,5 +7,30 @@
   </head>
 
   <body>
+    <button onclick="signup()">Sign up</button>
+
+    <p id="result">...</p>
+
+    <p id="current">...</p>
+
+    <script>
+      function showCurrentUser() {
+        axios.get('http://localhost:3000/current', {withCredentials: true})
+        .then(function (response) {
+          document.getElementById("current").innerHTML = response.data.name
+        })
+      }
+
+      function signup() {
+        axios.post('http://localhost:3000/signup', {
+          name: 'John Doe',
+          password: 'secret'
+        }, {withCredentials: true})
+        .then(function () {
+          document.getElementById("result").innerHTML = 'Sign up successful'
+          showCurrentUser()
+        })
+      }
+    </script>
   </body>
 </html>
